@@ -23,13 +23,11 @@ source=(
     "config.toml"
 )
 install="${pkgname}.install"
-sha1sums=(
-    "SKIP"
-    "SKIP"
-    "7a370ecaa5711a91b471cf6bcb0b8801775a48cd"
-    "5b6447fbfd5cc7526589e56835cd5ebcdbf8f8fb"
-    "4138aaeed2a83024398acd0a117821824b24b843"
-)
+sha1sums=('SKIP'
+          'SKIP'
+          '946b6b1d5169ff57246ac63c0717f633c1fb7af6'
+          'e2f2c3f13a42cd92031ce76c85a8d1315133f22a'
+          '4138aaeed2a83024398acd0a117821824b24b843')
 options=("!strip" "!debug")
 
 export GIT_LFS_SKIP_SMUDGE=1
@@ -49,7 +47,8 @@ prepare() {
 build() {
     cd "$srcdir/$pkgname"
     unset SQLX_OFFLINE  # Not sure what's causing this to be set, but it causes build failre
-    cargo build
+    export RUSTFLAGS="--remap-path-prefix ${srcdir}/${pkgname}="
+    cargo build --release
 }
 
 package() {
@@ -65,6 +64,6 @@ package() {
     install -d "$pkgdir${_appdataprefix}/$_appname"  # /var/opt/tabbyml (TABBY_ROOT)
     
     # install binaries
-    install -Dm755 "$srcdir/$pkgname/target/debug/tabby" "$pkgdir${_appprefix}/$_appname/bin/tabby"
-    install -Dm755 "$srcdir/$pkgname/target/debug/llama-server" "$pkgdir${_appprefix}/$_appname/bin/llama-server"
+    install -Dm755 "$srcdir/$pkgname/target/release/tabby" "$pkgdir${_appprefix}/$_appname/bin/tabby"
+    install -Dm755 "$srcdir/$pkgname/target/release/llama-server" "$pkgdir${_appprefix}/$_appname/bin/llama-server"
 }

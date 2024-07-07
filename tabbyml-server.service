@@ -8,7 +8,7 @@ User=tabbyml
 Group=tabbyml
 WorkingDirectory=/opt/tabbyml
 EnvironmentFile=/etc/tabbyml/server.conf
-ExecStart=/opt/tabbyml/bin/tabby serve ${TABBY_ARGS:+$TABBY_ARGS}
+ExecStart=/bin/bash -c '/opt/tabbyml/bin/tabby serve ${TABBY_ARGS:+$TABBY_ARGS}'
 
 [Install]
 WantedBy=multi-user.target

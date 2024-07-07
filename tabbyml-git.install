@@ -20,7 +20,7 @@ _install() {
 
         # Generate the secret key if needed
         msg "Generating random SECRET_KEY..."
-        secret_key="$(head -c 12 /dev/random | base64)"
+        secret_key="$(uuidgen)"
         sed -i "s/{{GENERATED_KEY}}/${secret_key}/" "/etc/${_appname}/server.conf"
     fi
     if [ ! -f "/etc/${_appname}/config.toml" ]; then
