@@ -6,7 +6,7 @@ _appdataprefix="/var/opt"
 
 pkgname="${_appname}-git"
 pkgrel=1
-pkgver=nightly.r8.g62430ac
+pkgver=nightly.r5.gaabc22e
 pkgdesc="Opensource, self-hosted AI coding assistant"
 arch=("x86_64")
 url="https://tabby.tabbyml.com"
@@ -26,7 +26,7 @@ install="${pkgname}.install"
 sha1sums=('SKIP'
           'SKIP'
           '946b6b1d5169ff57246ac63c0717f633c1fb7af6'
-          'e2f2c3f13a42cd92031ce76c85a8d1315133f22a'
+          'a3f26d5c57e74da76d51c7ed28753b0b867a95b7'
           '4138aaeed2a83024398acd0a117821824b24b843')
 options=("!strip" "!debug")
 
